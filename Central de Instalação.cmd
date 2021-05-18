@@ -2,20 +2,7 @@
 echo -----------------------------------
 echo Bem vindo a Central de Instalacoes 
 echo -----------------------------------
-
-echo Deseja instalar um programa para este computador ou para outro?
-echo [1] Este Computador
-echo [2] Outro Computador
-set /p inicio="Escolha uma opcao: ":
-if %inicio%==1 (
-color 1F
-cls
-goto menu)
-if %inicio%==2 (
-color 4F
-cls
-goto patr)
-
+goto ini
 :menu
 echo ---------------------------------------------
 echo Selecione o programa que voce deseja instalar
@@ -52,14 +39,25 @@ msg /server:%COMPUTERNAME% %USERNAME% Tchau!
 exit) 
 if %id%==00 (
 goto chcinstall)
+cls
+goto menu
 
 REM funcoes
-:patr
-	set /p cn="Digite o patrimonio: ":
-	psexec \\%cn% cmd
+:ini
+	echo Deseja instalar um programa para este computador ou para outro?
+	echo [1] Este Computador
+	echo [2] Outro Computador
+	set /p inicio="Escolha uma opcao: ":
+	if %inicio%==1 (
+	color 1F
 	cls
-	echo %cn%
-	goto menu
+	goto menu)
+	if %inicio%==2 (
+	color 4F
+	cls
+	goto patr)
+	cls
+	goto ini
 :patr
 	set /p cn="Digite o patrimonio: ":
 	psexec \\%cn% cmd
